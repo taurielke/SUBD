@@ -19,7 +19,6 @@ public class Material {
     @Id
     @Column(name = "id")
     private int id;
-
     @Column(name = "name_material")
     private String materialName;
 
@@ -29,12 +28,13 @@ public class Material {
     @ManyToMany(mappedBy = "materials")
     private List<Product> products = new ArrayList<>();
 
-    public Material(String materialName) {
+    public Material(String materialName, int warehouse_quantity) {
         this.materialName = materialName;
+        this.warehouse_quantity = warehouse_quantity;
     }
 
     @Override
     public String toString() {
-        return String.format("\nid: %d || Материал: %s", id, materialName);
+        return String.format("\nid: %d || Материал: %s || Кол-во на складе: %d", id, materialName, warehouse_quantity);
     }
 }

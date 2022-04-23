@@ -23,15 +23,16 @@ public class Product {
     @Column(name = "name_product")
     private String productName;
 
-    @Column(name = "warehouse_quantity")
-    private int warehouse_quantity;
-
     @ManyToMany
     @JoinTable(name = "product_material",
             joinColumns =  @JoinColumn(name = "product_id"),
             inverseJoinColumns = @JoinColumn(name = "material_id"))
     private List<Material> materials = new ArrayList<>();
 
+
+    public void setMaterial(Material material) {
+        materials.add(material);
+    }
 
     public Product(String productName) {
         this.productName = productName;
