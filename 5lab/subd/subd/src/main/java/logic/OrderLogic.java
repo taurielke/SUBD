@@ -9,11 +9,11 @@ import java.util.Scanner;
 
 public class OrderLogic {
     public void work(SessionFactory sessionFactory) {
-        System.out.println("Введите 1 для создания заказа");
-        System.out.println("Введите 2 для чтения заказа");
-        System.out.println("Введите 3 для изменения заказа");
-        System.out.println("Введите 4 для удаления заказа");
-        System.out.println("Введите 5 для фильтра");
+        System.out.println("Insert 1 to create order");
+        System.out.println("Insert 2 to read order");
+        System.out.println("Insert 3 to  update order");
+        System.out.println("Insert 4 to delete order");
+        System.out.println("Insert 5 to filter");
 
         Scanner scanner = new Scanner(System.in);
         int i = scanner.nextInt();
@@ -43,15 +43,15 @@ public class OrderLogic {
 
     private void create(Session session) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите дедлайн");
+        System.out.println("Insert deadline");
         String date = scanner.next();
         java.util.Date myDate = new java.util.Date(date);
         java.sql.Date sqlDate = new java.sql.Date(myDate.getTime());
 
-        System.out.println("Введите ФИО покупателя");
+        System.out.println("Insert buyer's first and last names");
         String buyerName = scanner.next();
 
-        System.out.println("Введите телефонный номер покупателя");
+        System.out.println("Insert buyer's phone number");
         int phoneNumber = scanner.nextInt();
 
         Orders order = new Orders(sqlDate, buyerName, phoneNumber);
@@ -60,25 +60,25 @@ public class OrderLogic {
     }
 
     private void read(Session session) {
-        List<Orders> orders = session.createQuery("SELECT a from Orders a", Orders.class).getResultList();
+        List<Orders> orders = session.createQuery("SELECT Main from Orders a", Orders.class).getResultList();
         System.out.println(orders);
     }
 
     private void update(Session session) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Ввдение id заказа");
+        System.out.println("Insert order id");
         int id = scanner.nextInt();
 
-        System.out.println("Введите дедлайн");
+        System.out.println("Insert deadline");
         String date = scanner.next();
         java.util.Date myDate = new java.util.Date(date);
         java.sql.Date sqlDate = new java.sql.Date(myDate.getTime());
 
-        System.out.println("Введите ФИО покупателя");
+        System.out.println("Insert buyer's first and last names");
         String buyerName = scanner.next();
 
-        System.out.println("Введите телефонный номер покупателя");
+        System.out.println("Insert buyer's phone number");
         int phoneNumber = scanner.nextInt();
 
         Orders order = session.get(Orders.class, id);
@@ -90,7 +90,7 @@ public class OrderLogic {
 
     private void delete(Session session) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Ввдение id заказа");
+        System.out.println("Insert order id");
         int id = scanner.nextInt();
 
         Orders order = session.get(Orders.class, id);
@@ -98,23 +98,23 @@ public class OrderLogic {
     }
 
     private void filterRead(Session session) {
-        System.out.println("Введите 1 для фильтра по дедлайну");
-        System.out.println("Введите 2 для фильтра по имени покупателя");
+        System.out.println("Insert 1 to filter by deadline");
+        System.out.println("Insert 2 to filter by buyer's name");
         Scanner scanner = new Scanner(System.in);
         int i = scanner.nextInt();
         List<Orders> orders = null;
         switch(i) {
             case 1:
-                System.out.println("Введите дедлайн");
+                System.out.println("Insert deadline");
                 String date = scanner.next();
                 java.util.Date myDate = new java.util.Date(date);
                 java.sql.Date sqlDate = new java.sql.Date(myDate.getTime());
-                orders = session.createQuery("SELECT a from Orders a where deadline = \'" + sqlDate + "\'", Orders.class).getResultList();
+                orders = session.createQuery("SELECT Main from Orders a where deadline = \'" + sqlDate + "\'", Orders.class).getResultList();
                 break;
             case 2:
-                System.out.println("Введите имя покупателя");
+                System.out.println("Insert buyer's name");
                 String name = scanner.next();
-                orders = session.createQuery("SELECT a from Orders a where buyerName = " + name, Orders.class).getResultList();
+                orders = session.createQuery("SELECT Main from Orders a where buyerName = " + name, Orders.class).getResultList();
                 break;
         }
         System.out.println(orders);

@@ -9,11 +9,11 @@ import java.util.Scanner;
 
 public class ProductLogic {
     public void work(SessionFactory sessionFactory) {
-        System.out.println("Введите 1 для создания изделия");
-        System.out.println("Введите 2 для чтения изделия");
-        System.out.println("Введите 3 для изменения изделия");
-        System.out.println("Введите 4 для удаления изделия");
-        System.out.println("Введите 5 для фильтра");
+        System.out.println("Insert 1 to create product");
+        System.out.println("Insert 2 to read product");
+        System.out.println("Insert 3 to  update product");
+        System.out.println("Insert 4 to delete product");
+        System.out.println("Insert 5 to filter");
 
         Scanner scanner = new Scanner(System.in);
         int i = scanner.nextInt();
@@ -43,49 +43,49 @@ public class ProductLogic {
 
     private void create(Session session) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите название изделия");
+        System.out.println("Insert product name");
         String nameProduct = scanner.next();
         Product product = new Product(nameProduct);
         session.save(product);
     }
 
     private void read(Session session) {
-        List<Product> products = session.createQuery("SELECT a from Product a", Product.class).getResultList();
+        List<Product> products = session.createQuery("SELECT Main from Product a", Product.class).getResultList();
         System.out.println(products);
     }
 
     private void update(Session session) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите id изделия");
+        System.out.println("Insert product id");
         int id = scanner.nextInt();
         Product product = session.get(Product.class, id);
 
-        System.out.println("Введите 1 для изменения названия");
-        System.out.println("Введите 2 для добавления материала");
-        System.out.println("Введите 3 для изменения названия и добавления материала");
+        System.out.println("Insert 1 to change name");
+        System.out.println("Insert 2 to add material");
+        System.out.println("Insert 3 to do both");
 
 
         int choice = scanner.nextInt();
         switch(choice){
             case 1:
-                System.out.println("Введите название изделия");
+                System.out.println("Insert product name");
                 String nameProduct = scanner.next();
                 product.setProductName(nameProduct);
                 session.save(product);
                 break;
             case 2:
-                System.out.println("Введите id материала");
+                System.out.println("Insert material id");
                 int materialID = scanner.nextInt();
-                product.setMaterial(session.get(Material.class, materialID));
+                /*product.setMaterial(session.get(Material.class, materialID));*/
                 session.save(product);
                 break;
             case 3:
-                System.out.println("Введите название изделия");
+                System.out.println("Insert product name");
                 String nameProduct1 = scanner.next();
                 product.setProductName(nameProduct1);
-                System.out.println("Введите id материала");
+                System.out.println("Insert material id");
                 int materialID1 = scanner.nextInt();
-                product.setMaterial(session.get(Material.class, materialID1));
+                /*product.setMaterial(session.get(Material.class, materialID1));*/
                 session.save(product);
                 break;
         }
@@ -93,7 +93,7 @@ public class ProductLogic {
 
     private void delete(Session session) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите id изделия");
+        System.out.println("Insert product id");
         int id = scanner.nextInt();
         Product product = session.get(Product.class, id);
         session.delete(product);
@@ -101,9 +101,9 @@ public class ProductLogic {
 
     private void filterRead(Session session) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите название изделия");
+        System.out.println("Insert product name");
         String nameProduct = scanner.next();
-        List<Product> products = session.createQuery("SELECT a from Product a WHERE productName = \'" + nameProduct + "\'", Product.class).getResultList();
+        List<Product> products = session.createQuery("SELECT Main from Product a WHERE productName = \'" + nameProduct + "\'", Product.class).getResultList();
         System.out.println(products);
     }
 }

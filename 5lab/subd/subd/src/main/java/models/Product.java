@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "product", schema = "public", catalog = "lab4")
+@Table(name = "product", schema = "public", catalog = "test")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -23,16 +23,16 @@ public class Product {
     @Column(name = "name_product")
     private String productName;
 
-    @ManyToMany
+    /*@ManyToMany
     @JoinTable(name = "product_material",
             joinColumns =  @JoinColumn(name = "product_id"),
             inverseJoinColumns = @JoinColumn(name = "material_id"))
-    private List<Material> materials = new ArrayList<>();
+    private List<Material> materials = new ArrayList<>();*/
 
 
-    public void setMaterial(Material material) {
+    /*public void setMaterial(Material material) {
         materials.add(material);
-    }
+    }*/
 
     public Product(String productName) {
         this.productName = productName;

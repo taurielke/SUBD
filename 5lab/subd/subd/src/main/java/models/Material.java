@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "material", schema = "public", catalog = "lab4")
+@Table(name = "material", schema = "public", catalog = "test")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -17,7 +17,7 @@ import javax.persistence.*;
 public class Material {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "id")
+    @Column(name = "id_material")
     private int id;
     @Column(name = "name_material")
     private String materialName;
@@ -25,8 +25,8 @@ public class Material {
     @Column(name = "warehouse_quantity")
     private int warehouse_quantity;
 
-    @ManyToMany(mappedBy = "materials")
-    private List<Product> products = new ArrayList<>();
+/*    @ManyToMany(mappedBy = "materials")
+    private List<Product> products = new ArrayList<>();*/
 
     public Material(String materialName, int warehouse_quantity) {
         this.materialName = materialName;

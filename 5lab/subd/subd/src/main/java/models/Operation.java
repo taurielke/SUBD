@@ -8,7 +8,7 @@ import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
-@Table(name = "expenses", schema = "public", catalog = "lab5")
+@Table(name = "operation", schema = "public", catalog = "test")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter

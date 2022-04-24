@@ -9,11 +9,11 @@ import java.util.Scanner;
 
 public class OperationLogic {
     public void work(SessionFactory sessionFactory) {
-        System.out.println("Введите 1 для создания доходов");
-        System.out.println("Введите 2 для чтения доходов");
-        System.out.println("Введите 3 для изменения доходов");
-        System.out.println("Введите 4 для удаления доходов");
-        System.out.println("Введите 5 для фильтра");
+        System.out.println("Insert 1 to create operation");
+        System.out.println("Insert 2 to read operation");
+        System.out.println("Insert 3 to  update operation");
+        System.out.println("Insert 4 to delete operation");
+        System.out.println("Insert 5 to filter");
 
         Scanner scanner = new Scanner(System.in);
         int i = scanner.nextInt();
@@ -44,21 +44,21 @@ public class OperationLogic {
     private void create(Session session) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Введите дату операции");
+        System.out.println("Insert operation date");
         String date = scanner.next();
         java.util.Date myDate = new java.util.Date(date);
         java.sql.Date sqlDate = new java.sql.Date(myDate.getTime());
 
-        System.out.println("Введите id изделия");
+        System.out.println("Insert product id");
         int productID = scanner.nextInt();
 
-        System.out.println("Введите кол-во изделия");
+        System.out.println("Insert product amount");
         int amount = scanner.nextInt();
 
-        System.out.println("Введите id статуса");
+        System.out.println("Insert status id");
         int statusID = scanner.nextInt();
 
-        System.out.println("Введите id заказа");
+        System.out.println("Insert order id");
         int orderID = scanner.nextInt();
 
         Operation operation = new Operation(sqlDate, session.get(Product.class, productID), amount,
@@ -68,31 +68,31 @@ public class OperationLogic {
     }
 
     private void read(Session session) {
-        List<Operation> operations = session.createQuery("SELECT a from Operation a", Operation.class).getResultList();
+        List<Operation> operations = session.createQuery("SELECT Main from Operation a", Operation.class).getResultList();
         System.out.println(operations);
     }
 
     private void update(Session session) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Введите id операции");
+        System.out.println("Insert operation id");
         int id = scanner.nextInt();
 
-        System.out.println("Введите дату операции");
+        System.out.println("Insert operation date");
         String date = scanner.next();
         java.util.Date myDate = new java.util.Date(date);
         java.sql.Date sqlDate = new java.sql.Date(myDate.getTime());
 
-        System.out.println("Введите id изделия");
+        System.out.println("Insert product id");
         int productID = scanner.nextInt();
 
-        System.out.println("Введите кол-во изделия");
+        System.out.println("Insert product amount");
         int amount = scanner.nextInt();
 
-        System.out.println("Введите id статуса");
+        System.out.println("Insert status id");
         int statusID = scanner.nextInt();
 
-        System.out.println("Введите id заказа");
+        System.out.println("Insert order id");
         int orderID = scanner.nextInt();
 
         Operation operation = session.get(Operation.class, id);
@@ -106,53 +106,53 @@ public class OperationLogic {
 
     private void delete(Session session) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Ввдение id операции");
+        System.out.println("Insert operation id");
         int id = scanner.nextInt();
         Operation operation = session.get(Operation.class, id);
         session.delete(operation);
     }
 
     private void filterRead(Session session) {
-        System.out.println("Введите 1 для фильтра по дате операции");
-        System.out.println("Введите 2 для фильтра по изделию");
-        System.out.println("Введите 3 для фильтра по кол-ву изделия");
-        System.out.println("Введите 4 для фильтра по статусу");
-        System.out.println("Введите 5 для фильтра по номеру заказа");
+        System.out.println("Insert 1 to filter by operation date");
+        System.out.println("Insert 2 to filter by product");
+        System.out.println("Insert 3 to filter by product amount");
+        System.out.println("Insert 4 to filter by status");
+        System.out.println("Insert 5 to filter by order id");
 
         Scanner scanner = new Scanner(System.in);
         int i = scanner.nextInt();
         List<Operation> operations = null;
         switch(i) {
             case 1:
-                System.out.println("Введите дату операции");
+                System.out.println("Insert operation date");
                 String date = scanner.next();
                 java.util.Date myDate = new java.util.Date(date);
                 java.sql.Date sqlDate = new java.sql.Date(myDate.getTime());
-                operations = session.createQuery("SELECT a from Operation a where date = \'"
+                operations = session.createQuery("SELECT Main from Operation a where date = \'"
                         + sqlDate + "\'", Operation.class).getResultList();
                 break;
             case 2:
-                System.out.println("Введите id изделия");
+                System.out.println("Insert product id");
                 int productID = scanner.nextInt();
-                operations = session.createQuery("SELECT a from Operation a where product = "
+                operations = session.createQuery("SELECT Main from Operation a where product = "
                         + productID, Operation.class).getResultList();
                 break;
             case 3:
-                System.out.println("Введите кол-во изделия");
+                System.out.println("Insert product amount");
                 int amount = scanner.nextInt();
-                operations = session.createQuery("SELECT a from Operation a where quantityProduct = \'"
+                operations = session.createQuery("SELECT Main from Operation a where quantityProduct = \'"
                         + amount + "\'", Operation.class).getResultList();
                 break;
             case 4:
-                System.out.println("Введите id статуса");
+                System.out.println("Insert status id");
                 int statusID = scanner.nextInt();
-                operations = session.createQuery("SELECT a from Operation a where status_product = "
+                operations = session.createQuery("SELECT Main from Operation a where status_product = "
                         + statusID, Operation.class).getResultList();
                 break;
             case 5:
-                System.out.println("Введите id заказа");
+                System.out.println("Insert order id");
                 int orderID = scanner.nextInt();
-                operations = session.createQuery("SELECT a from Operation a where order = "
+                operations = session.createQuery("SELECT Main from Operation a where order = "
                         + orderID, Operation.class).getResultList();
                 break;
         }

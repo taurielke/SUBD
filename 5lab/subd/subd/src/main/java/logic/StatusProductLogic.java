@@ -9,11 +9,11 @@ import java.util.Scanner;
 
 public class StatusProductLogic {
     public void work(SessionFactory sessionFactory) {
-        System.out.println("Введите 1 для создания статуса изделия");
-        System.out.println("Введите 2 для чтения статуса изделия");
-        System.out.println("Введите 3 для изменения статуса изделия");
-        System.out.println("Введите 4 для удаления статуса изделия");
-        System.out.println("Введите 5 для фильтра");
+        System.out.println("Insert 1 to create status");
+        System.out.println("Insert 2 to read status");
+        System.out.println("Insert 3 to  update status");
+        System.out.println("Insert 4 to delete status");
+        System.out.println("Insert 5 to filter");
 
         Scanner scanner = new Scanner(System.in);
         int i = scanner.nextInt();
@@ -43,24 +43,24 @@ public class StatusProductLogic {
 
     private void create(Session session) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите название статуса");
+        System.out.println("Insert status name");
         String nameStatus = scanner.next();
         Status_Product status = new Status_Product(nameStatus);
         session.save(status);
     }
 
     private void read(Session session) {
-        List<Status_Product> statuses = session.createQuery("SELECT a from Status_Product a", Status_Product.class).getResultList();
+        List<Status_Product> statuses = session.createQuery("SELECT Main from Status_Product a", Status_Product.class).getResultList();
         System.out.println(statuses);
     }
 
     private void update(Session session) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Введите id статуса изделия");
+        System.out.println("Insert status id");
         int id = scanner.nextInt();
 
-        System.out.println("Введите название статуса изделия");
+        System.out.println("Insert status name");
         String nameStatus = scanner.next();
 
         Status_Product status = session.get(Status_Product.class, id);
@@ -70,7 +70,7 @@ public class StatusProductLogic {
 
     private void delete(Session session) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите id статуса изделия");
+        System.out.println("Insert status id");
         int id = scanner.nextInt();
         Status_Product status_product = session.get(Status_Product.class, id);
         session.delete(status_product);
@@ -78,9 +78,9 @@ public class StatusProductLogic {
 
     private void filterRead(Session session) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите название статуса изделия");
+        System.out.println("Insert status name");
         String nameStatus = scanner.next();
-        List<Status_Product> statuses = session.createQuery("SELECT a from Status_Product a where statusName = \'" + nameStatus + "\'", Status_Product.class).getResultList();
+        List<Status_Product> statuses = session.createQuery("SELECT Main from Status_Product a where statusName = \'" + nameStatus + "\'", Status_Product.class).getResultList();
         System.out.println(statuses);
     }
 }

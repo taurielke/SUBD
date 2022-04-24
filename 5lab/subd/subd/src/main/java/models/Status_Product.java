@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "status_product", schema = "public", catalog = "lab4")
+@Table(name = "status_product", schema = "public", catalog = "test")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter

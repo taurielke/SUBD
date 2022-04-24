@@ -1,6 +1,4 @@
-import jdk.jshell.Snippet;
 import logic.*;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
@@ -23,12 +21,12 @@ public class Main {
 
         boolean isWork = true;
         while(isWork){
-            System.out.println("Введите 1 для работы с материалами");
-            System.out.println("Введите 2 для работы с операциям");
-            System.out.println("Введите 3 для работы с заказами");
-            System.out.println("Введите 4 для работы с изделиями");
-            System.out.println("Введите 5 для работы со статусами");
-            System.out.println("Введите 6 для выхода");
+            System.out.println("Insert 1 to work with materials");
+            System.out.println("Insert 2 to work with operations");
+            System.out.println("Insert 3 to work with orders");
+            System.out.println("Insert 4 to work with products");
+            System.out.println("Insert 5 to work with statuses");
+            System.out.println("Insert 6 to exit");
 
             Scanner scanner = new Scanner(System.in);
             int i = scanner.nextInt();

@@ -9,11 +9,11 @@ import java.util.Scanner;
 
 public class MaterialLogic {
     public void work(SessionFactory sessionFactory) {
-        System.out.println("Введите 1 для создания материала");
-        System.out.println("Введите 2 для чтения материала");
-        System.out.println("Введите 3 для изменения материала");
-        System.out.println("Введите 4 для удаления материала");
-        System.out.println("Введите 5 для фильтра");
+        System.out.println("Insert 1 to create material");
+        System.out.println("Insert 2 to read material");
+        System.out.println("Insert 3 to  update material");
+        System.out.println("Insert 4 to delete material");
+        System.out.println("Insert 5 to filter");
 
         Scanner scanner = new Scanner(System.in);
         int i = scanner.nextInt();
@@ -43,26 +43,26 @@ public class MaterialLogic {
 
     private void create(Session session) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите название материала");
+        System.out.println("Insert material name");
         String name = scanner.next();
-        System.out.println("Введите кол-во материала на складе");
+        System.out.println("Insert warehouse quantity of the material");
         int amount = scanner.nextInt();
         Material material = new Material(name, amount);
         session.save(material);
     }
 
     private void read(Session session) {
-        List<Material> materials = session.createQuery("SELECT a from Material a", Material.class).getResultList();
+        List<Material> materials = session.createQuery("SELECT Main from Material a", Material.class).getResultList();
         System.out.println(materials);
     }
 
     private void update(Session session) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите id материала");
+        System.out.println("Insert material id");
         int id = scanner.nextInt();
-        System.out.println("Введите название материала");
+        System.out.println("Insert material name");
         String name = scanner.next();
-        System.out.println("Введите кол-во материала на складе");
+        System.out.println("Insert warehouse quantity of the material");
         int amount = scanner.nextInt();
         Material material = session.get(Material.class, id);
         material.setMaterialName(name);
@@ -72,7 +72,7 @@ public class MaterialLogic {
 
     private void delete(Session session) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите id материала");
+        System.out.println("Insert material id");
         int id = scanner.nextInt();
         Material material = session.get(Material.class, id);
         session.delete(material);
@@ -80,9 +80,9 @@ public class MaterialLogic {
 
     private void filterRead(Session session) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите название материала");
+        System.out.println("Insert material name");
         String name = scanner.next();
-        List<Material> materials = session.createQuery("SELECT a from Material a WHERE materialName = \'" + name + "\'", Material.class).getResultList();
+        List<Material> materials = session.createQuery("SELECT Main from Material a WHERE materialName = \'" + name + "\'", Material.class).getResultList();
         System.out.println(materials);
     }
 }
