@@ -52,7 +52,7 @@ public class MaterialLogic {
     }
 
     private void read(Session session) {
-        List<Material> materials = session.createQuery("SELECT Main from Material a", Material.class).getResultList();
+        List<Material> materials = session.createQuery("SELECT a from Material a", Material.class).getResultList();
         System.out.println(materials);
     }
 
@@ -82,7 +82,7 @@ public class MaterialLogic {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Insert material name");
         String name = scanner.next();
-        List<Material> materials = session.createQuery("SELECT Main from Material a WHERE materialName = \'" + name + "\'", Material.class).getResultList();
+        List<Material> materials = session.createQuery("SELECT a from Material a WHERE materialName = \'" + name + "\'", Material.class).getResultList();
         System.out.println(materials);
     }
 }

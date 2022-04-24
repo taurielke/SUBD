@@ -68,7 +68,7 @@ public class OperationLogic {
     }
 
     private void read(Session session) {
-        List<Operation> operations = session.createQuery("SELECT Main from Operation a", Operation.class).getResultList();
+        List<Operation> operations = session.createQuery("SELECT a from Operation a", Operation.class).getResultList();
         System.out.println(operations);
     }
 
@@ -128,31 +128,31 @@ public class OperationLogic {
                 String date = scanner.next();
                 java.util.Date myDate = new java.util.Date(date);
                 java.sql.Date sqlDate = new java.sql.Date(myDate.getTime());
-                operations = session.createQuery("SELECT Main from Operation a where date = \'"
+                operations = session.createQuery("SELECT a from Operation a where date = \'"
                         + sqlDate + "\'", Operation.class).getResultList();
                 break;
             case 2:
                 System.out.println("Insert product id");
                 int productID = scanner.nextInt();
-                operations = session.createQuery("SELECT Main from Operation a where product = "
+                operations = session.createQuery("SELECT a from Operation a where product = "
                         + productID, Operation.class).getResultList();
                 break;
             case 3:
                 System.out.println("Insert product amount");
                 int amount = scanner.nextInt();
-                operations = session.createQuery("SELECT Main from Operation a where quantityProduct = \'"
+                operations = session.createQuery("SELECT a from Operation a where quantityProduct = \'"
                         + amount + "\'", Operation.class).getResultList();
                 break;
             case 4:
                 System.out.println("Insert status id");
                 int statusID = scanner.nextInt();
-                operations = session.createQuery("SELECT Main from Operation a where status_product = "
+                operations = session.createQuery("SELECT a from Operation a where status_product = "
                         + statusID, Operation.class).getResultList();
                 break;
             case 5:
                 System.out.println("Insert order id");
                 int orderID = scanner.nextInt();
-                operations = session.createQuery("SELECT Main from Operation a where order = "
+                operations = session.createQuery("SELECT a from Operation a where order = "
                         + orderID, Operation.class).getResultList();
                 break;
         }

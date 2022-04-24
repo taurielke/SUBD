@@ -50,7 +50,7 @@ public class StatusProductLogic {
     }
 
     private void read(Session session) {
-        List<Status_Product> statuses = session.createQuery("SELECT Main from Status_Product a", Status_Product.class).getResultList();
+        List<Status_Product> statuses = session.createQuery("SELECT a from Status_Product a", Status_Product.class).getResultList();
         System.out.println(statuses);
     }
 
@@ -80,7 +80,7 @@ public class StatusProductLogic {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Insert status name");
         String nameStatus = scanner.next();
-        List<Status_Product> statuses = session.createQuery("SELECT Main from Status_Product a where statusName = \'" + nameStatus + "\'", Status_Product.class).getResultList();
+        List<Status_Product> statuses = session.createQuery("SELECT a from Status_Product a where statusName = \'" + nameStatus + "\'", Status_Product.class).getResultList();
         System.out.println(statuses);
     }
 }

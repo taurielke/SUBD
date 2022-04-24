@@ -17,7 +17,7 @@ import javax.persistence.*;
 public class Status_Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "id")
+    @Column(name = "id_status")
     private int id;
 
     @Column(name = "name_status")

@@ -17,11 +17,14 @@ import javax.persistence.*;
 public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "id")
+    @Column(name = "id_product")
     private int id;
 
     @Column(name = "name_product")
     private String productName;
+
+    @Column(name = "warehouse_quantity")
+    private int warehouse_quantity;
 
     /*@ManyToMany
     @JoinTable(name = "product_material",
@@ -34,12 +37,13 @@ public class Product {
         materials.add(material);
     }*/
 
-    public Product(String productName) {
+    public Product(String productName, int quantity) {
         this.productName = productName;
+        warehouse_quantity = quantity;
     }
 
     @Override
     public String toString() {
-        return String.format("\nid: %d || Изделие: %s", id, productName);
+        return String.format("\nid: %d || Изделие: %s || Кол-во на складе: %d" , id, productName, warehouse_quantity);
     }
 }

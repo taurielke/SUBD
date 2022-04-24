@@ -16,11 +16,11 @@ import javax.persistence.*;
 public class Product_Material {
 
     @Id
-    @Column(name = "prodictID")
+    @Column(name = "prodictid_product")
     private int productID;
 
     @Id
-    @Column(name = "materialID")
+    @Column(name = "materialid_material")
     private int materialID;
 
     @Column(name = "material_quantity_for_product")

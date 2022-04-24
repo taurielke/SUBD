@@ -45,12 +45,14 @@ public class ProductLogic {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Insert product name");
         String nameProduct = scanner.next();
-        Product product = new Product(nameProduct);
+        System.out.println("Insert warehouse quantity");
+        int amount = scanner.nextInt();
+        Product product = new Product(nameProduct, amount);
         session.save(product);
     }
 
     private void read(Session session) {
-        List<Product> products = session.createQuery("SELECT Main from Product a", Product.class).getResultList();
+        List<Product> products = session.createQuery("SELECT a from Product a", Product.class).getResultList();
         System.out.println(products);
     }
 
@@ -103,7 +105,7 @@ public class ProductLogic {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Insert product name");
         String nameProduct = scanner.next();
-        List<Product> products = session.createQuery("SELECT Main from Product a WHERE productName = \'" + nameProduct + "\'", Product.class).getResultList();
+        List<Product> products = session.createQuery("SELECT a from Product a WHERE productName = \'" + nameProduct + "\'", Product.class).getResultList();
         System.out.println(products);
     }
 }

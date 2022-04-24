@@ -54,13 +54,13 @@ public class OrderLogic {
         System.out.println("Insert buyer's phone number");
         int phoneNumber = scanner.nextInt();
 
-        Orders order = new Orders(sqlDate, buyerName, phoneNumber);
+        Orders order = new Orders(myDate, buyerName, phoneNumber);
 
         session.save(order);
     }
 
     private void read(Session session) {
-        List<Orders> orders = session.createQuery("SELECT Main from Orders a", Orders.class).getResultList();
+        List<Orders> orders = session.createQuery("SELECT a from Orders a", Orders.class).getResultList();
         System.out.println(orders);
     }
 
@@ -109,12 +109,12 @@ public class OrderLogic {
                 String date = scanner.next();
                 java.util.Date myDate = new java.util.Date(date);
                 java.sql.Date sqlDate = new java.sql.Date(myDate.getTime());
-                orders = session.createQuery("SELECT Main from Orders a where deadline = \'" + sqlDate + "\'", Orders.class).getResultList();
+                orders = session.createQuery("SELECT a from Orders a where deadline = \'" + sqlDate + "\'", Orders.class).getResultList();
                 break;
             case 2:
                 System.out.println("Insert buyer's name");
                 String name = scanner.next();
-                orders = session.createQuery("SELECT Main from Orders a where buyerName = " + name, Orders.class).getResultList();
+                orders = session.createQuery("SELECT a from Orders a where buyerName = " + name, Orders.class).getResultList();
                 break;
         }
         System.out.println(orders);

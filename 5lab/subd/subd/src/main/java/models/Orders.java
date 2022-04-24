@@ -19,7 +19,7 @@ import javax.persistence.*;
 public class Orders {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "id")
+    @Column(name = "id_order")
     private int id;
 
     @Column(name = "deadline")
