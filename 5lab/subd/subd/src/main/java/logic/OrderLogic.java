@@ -48,13 +48,13 @@ public class OrderLogic {
         java.util.Date myDate = new java.util.Date(date);
         java.sql.Date sqlDate = new java.sql.Date(myDate.getTime());
 
-        System.out.println("Insert buyer's first and last names");
+        System.out.println("Insert buyer's name");
         String buyerName = scanner.next();
 
         System.out.println("Insert buyer's phone number");
         int phoneNumber = scanner.nextInt();
 
-        Orders order = new Orders(myDate, buyerName, phoneNumber);
+        Orders order = new Orders(sqlDate, buyerName, phoneNumber);
 
         session.save(order);
     }
@@ -75,7 +75,7 @@ public class OrderLogic {
         java.util.Date myDate = new java.util.Date(date);
         java.sql.Date sqlDate = new java.sql.Date(myDate.getTime());
 
-        System.out.println("Insert buyer's first and last names");
+        System.out.println("Insert buyer's name");
         String buyerName = scanner.next();
 
         System.out.println("Insert buyer's phone number");

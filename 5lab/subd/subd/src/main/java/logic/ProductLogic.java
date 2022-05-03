@@ -3,6 +3,8 @@ package logic;
 import models.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.exception.ConstraintViolationException;
 
 import java.util.List;
 import java.util.Scanner;
@@ -14,6 +16,7 @@ public class ProductLogic {
         System.out.println("Insert 3 to  update product");
         System.out.println("Insert 4 to delete product");
         System.out.println("Insert 5 to filter");
+        System.out.println("Insert 6 to get list of material in product");
 
         Scanner scanner = new Scanner(System.in);
         int i = scanner.nextInt();
@@ -36,6 +39,9 @@ public class ProductLogic {
                 break;
             case 5:
                 filterRead(session);
+                break;
+            case 6:
+                materialList(session);
                 break;
         }
         session.getTransaction().commit();
@@ -66,7 +72,6 @@ public class ProductLogic {
         System.out.println("Insert 2 to add material");
         System.out.println("Insert 3 to do both");
 
-
         int choice = scanner.nextInt();
         switch(choice){
             case 1:
@@ -78,8 +83,10 @@ public class ProductLogic {
             case 2:
                 System.out.println("Insert material id");
                 int materialID = scanner.nextInt();
-                /*product.setMaterial(session.get(Material.class, materialID));*/
-                session.save(product);
+                System.out.println("Insert amount");
+                int amount = scanner.nextInt();
+                Product_Material product_material = new Product_Material(id, materialID, amount);
+                session.save(product_material);
                 break;
             case 3:
                 System.out.println("Insert product name");
@@ -87,8 +94,11 @@ public class ProductLogic {
                 product.setProductName(nameProduct1);
                 System.out.println("Insert material id");
                 int materialID1 = scanner.nextInt();
-                /*product.setMaterial(session.get(Material.class, materialID1));*/
+                System.out.println("Insert amount");
+                int amount1 = scanner.nextInt();
+                Product_Material product_material1 = new Product_Material(id, materialID1, amount1);
                 session.save(product);
+                session.save(product_material1);
                 break;
         }
     }
@@ -98,7 +108,15 @@ public class ProductLogic {
         System.out.println("Insert product id");
         int id = scanner.nextInt();
         Product product = session.get(Product.class, id);
-        session.delete(product);
+        try {
+            Transaction transaction = session.beginTransaction();
+            session.delete(product);
+            transaction.commit();
+        }
+        catch (Exception ex){
+            System.out.println("cannot be deleted because it is in another entity");
+        }
+
     }
 
     private void filterRead(Session session) {
@@ -107,5 +125,13 @@ public class ProductLogic {
         String nameProduct = scanner.next();
         List<Product> products = session.createQuery("SELECT a from Product a WHERE productName = \'" + nameProduct + "\'", Product.class).getResultList();
         System.out.println(products);
+    }
+
+    private void materialList(Session session) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Insert product ID");
+        int productID = scanner.nextInt();
+        List<Product_Material> materials = session.createQuery("SELECT a from Product_Material a WHERE productID = \'" + productID + "\'", Product_Material.class).getResultList();
+        System.out.println(materials);
     }
 }

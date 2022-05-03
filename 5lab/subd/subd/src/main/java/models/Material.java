@@ -25,9 +25,6 @@ public class Material {
     @Column(name = "warehouse_quantity")
     private int warehouse_quantity;
 
-/*    @ManyToMany(mappedBy = "materials")
-    private List<Product> products = new ArrayList<>();*/
-
     public Material(String materialName, int warehouse_quantity) {
         this.materialName = materialName;
         this.warehouse_quantity = warehouse_quantity;
@@ -35,6 +32,6 @@ public class Material {
 
     @Override
     public String toString() {
-        return String.format("\nid: %d || Материал: %s || Кол-во на складе: %d", id, materialName, warehouse_quantity);
+        return String.format("\nid: %d || material name: %s || warehouse quantity: %d", id, materialName, warehouse_quantity);
     }
 }

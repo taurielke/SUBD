@@ -29,7 +29,7 @@ public class Operation {
     @Column(name = "quantity_product")
     private int quantityProduct;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, cascade = {CascadeType.REFRESH, CascadeType.PERSIST})
     @JoinColumn(name="id_status")
     private Status_Product status_product;
 
@@ -47,7 +47,7 @@ public class Operation {
 
     @Override
     public String toString() {
-        return String.format("\nid: %d || Дата: %s  || ProductID: %s  || Количество изделий: %s  || Status_ProductID: %s  || OrderID: %s",
+        return String.format("\nid: %d || Date: %s  || ProductID: %s  || Product amount: %s  || Status_ProductID: %s  || OrderID: %s",
                 id, date, product.getId(), quantityProduct, status_product.getId(), order.getId());
     }
 }

@@ -39,6 +39,6 @@ public class Orders {
 
     @Override
     public String toString() {
-        return String.format("\"\\nid: %d || Дата: %s  || Дедлайн: %s  || Имя покупателя: %s  || Телефонный номер покупателя: %s", id, deadline, buyerName, buyerPhoneNumber);
+        return String.format("\nid: %d || deadline: %s  || buyer's name: %s  || buyer's phone number: %d", id, deadline, buyerName, buyerPhoneNumber);
     }
 }

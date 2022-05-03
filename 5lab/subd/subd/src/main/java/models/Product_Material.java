@@ -16,7 +16,7 @@ import javax.persistence.*;
 public class Product_Material {
 
     @Id
-    @Column(name = "prodictid_product")
+    @Column(name = "productid_product")
     private int productID;
 
     @Id
@@ -34,6 +34,6 @@ public class Product_Material {
 
     @Override
     public String toString() {
-        return String.format("\nИзделие: %d || Материал: %d || Кол-во на складе: %d", productID, materialID, quantity);
+        return String.format("\nProduct: %d || Material: %d || Warehouse amount: %d", productID, materialID, quantity);
     }
 }

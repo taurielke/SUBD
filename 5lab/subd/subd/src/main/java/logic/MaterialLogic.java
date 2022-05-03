@@ -60,16 +60,39 @@ public class MaterialLogic {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Insert material id");
         int id = scanner.nextInt();
-        System.out.println("Insert material name");
-        String name = scanner.next();
-        System.out.println("Insert warehouse quantity of the material");
-        int amount = scanner.nextInt();
-        Material material = session.get(Material.class, id);
-        material.setMaterialName(name);
-        material.setWarehouse_quantity(amount);
-        session.save(material);
-    }
 
+        System.out.println("Insert 1 to change name");
+        System.out.println("Insert 2 to change warehouse quantity");
+        System.out.println("Insert 3 to do both");
+
+        int choice = scanner.nextInt();
+        switch(choice){
+            case 1:
+                System.out.println("Insert material name");
+                String name = scanner.next();
+                Material material = session.get(Material.class, id);
+                material.setMaterialName(name);
+                session.save(material);
+                break;
+            case 2:
+                System.out.println("Insert warehouse quantity of the material");
+                int amount = scanner.nextInt();
+                Material material1 = session.get(Material.class, id);
+                material1.setWarehouse_quantity(amount);
+                session.save(material1);
+                break;
+            case 3:
+                System.out.println("Insert material name");
+                String name2 = scanner.next();
+                System.out.println("Insert warehouse quantity of the material");
+                int amount2 = scanner.nextInt();
+                Material material2 = session.get(Material.class, id);
+                material2.setMaterialName(name2);
+                material2.setWarehouse_quantity(amount2);
+                session.save(material2);
+                break;
+        }
+    }
     private void delete(Session session) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Insert material id");

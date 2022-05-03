@@ -27,6 +27,7 @@ public class Main {
             System.out.println("Insert 4 to work with products");
             System.out.println("Insert 5 to work with statuses");
             System.out.println("Insert 6 to exit");
+            System.out.println("Insert 7 to see the main request");
 
             Scanner scanner = new Scanner(System.in);
             int i = scanner.nextInt();
@@ -54,6 +55,10 @@ public class Main {
                     break;
                 case 6:
                     isWork = false;
+                    break;
+                case 7:
+                    MainSQLRequestLogic mainSQLRequestLogic = new MainSQLRequestLogic();
+                    mainSQLRequestLogic.work(sessionFactory);
                     break;
             }
         }

@@ -29,6 +29,6 @@ public class Status_Product {
 
     @Override
     public String toString() {
-        return String.format("\nid: %d || Статус изделия: %s", id, statusName);
+        return String.format("\nid: %d || Status name: %s", id, statusName);
     }
 }

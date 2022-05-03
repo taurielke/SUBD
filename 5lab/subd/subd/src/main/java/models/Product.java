@@ -26,17 +26,6 @@ public class Product {
     @Column(name = "warehouse_quantity")
     private int warehouse_quantity;
 
-    /*@ManyToMany
-    @JoinTable(name = "product_material",
-            joinColumns =  @JoinColumn(name = "product_id"),
-            inverseJoinColumns = @JoinColumn(name = "material_id"))
-    private List<Material> materials = new ArrayList<>();*/
-
-
-    /*public void setMaterial(Material material) {
-        materials.add(material);
-    }*/
-
     public Product(String productName, int quantity) {
         this.productName = productName;
         warehouse_quantity = quantity;
@@ -44,6 +33,6 @@ public class Product {
 
     @Override
     public String toString() {
-        return String.format("\nid: %d || Изделие: %s || Кол-во на складе: %d" , id, productName, warehouse_quantity);
+        return String.format("\nid: %d || Product: %s || Warehouse quantity: %d" , id, productName, warehouse_quantity);
     }
 }
